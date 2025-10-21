@@ -28,9 +28,12 @@ module.exports.showListing = (async (req,res) => {
 });
 
 module.exports.createListing = (async (req,res) => {
+    let url = req.file.path;
+    let filename = req.file.filename;
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;  
     //passport stores logged in user info we will use its id to display owner for new listing we are creating(req.user stores owner id)
+    newListing.image = { url, filename };
     await newListing.save();
     req.flash("success" ,"New Listing Created!");
     res.redirect("/listings");

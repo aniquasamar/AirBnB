@@ -1,4 +1,12 @@
 const Listing = require("../models/listing");
+const NodeGeocoder = require('node-geocoder');
+
+const options = {
+  provider: 'opencage', // Use OpenCage
+  apiKey: process.env.OPENCAGE_API_KEY, // Pass in your new API key 
+};
+
+const geocoder = NodeGeocoder(options);
 
 //Index Route
 module.exports.index = async (req,res) => {
@@ -28,15 +36,40 @@ module.exports.showListing = (async (req,res) => {
 });
 
 module.exports.createListing = (async (req,res) => {
+    try {
     let url = req.file.path;
     let filename = req.file.filename;
+    // 1. Geocode the location using node-geocoder
+    const data = await geocoder.geocode(req.body.listing.location);
+
+    // Check if we got a result
+    if (!data.length) {
+        req.flash("error", "Could not find that location. Please try a different one.");
+        return res.redirect("/listings/new");
+    }
+
     const newListing = new Listing(req.body.listing);
-    newListing.owner = req.user._id;  
+
+    newListing.geometry = {
+        type: "Point",
+        coordinates: [
+            data[0].longitude, // [lng, lat]
+            data[0].latitude
+        ]
+    };
+
+    newListing.owner = req.user._id;
     //passport stores logged in user info we will use its id to display owner for new listing we are creating(req.user stores owner id)
     newListing.image = { url, filename };
     await newListing.save();
-    req.flash("success" ,"New Listing Created!");
+    req.flash("success", "New Listing Created!");
     res.redirect("/listings");
+    } catch (err) {
+    // This will catch any error, including network/Wi-Fi failures
+    console.log("Error in createListing:", err.message);
+    req.flash("error", "Something went wrong. It might be a connection issue. Please try again.");
+    res.redirect("/listings/new");
+  };
 });
 
 module.exports.renderEditForm = (async (req,res) => {

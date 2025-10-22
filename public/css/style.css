@@ -26,41 +26,34 @@ body {
 
 /* Footer */
 
-.f-info-links a{
-    text-decoration: none;
-    color: #222222; 
+footer {
+  background-color: #f7f7f7;
+  border-top: 1px solid #ebebeb;
+  font-size: 0.9rem;
 }
 
-.f-info-links  a:hover {
-    text-decoration: underline;
+.footer-link {
+  text-decoration: none;
+  color: #222; /* Dark text color */
+  font-weight: 500;
 }
 
-.f-info-links , 
-.f-info-socials
-,.f-info-brand{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content:center;
+.footer-link:hover {
+  text-decoration: underline;
 }
 
-.f-info-socials i {
-    font-size: 1.2rem;
-    margin-right: 1rem;
-}
-.f-info {
-    text-align: center;
-    display: flex;
-    height: 8 rem;
-    background-color: #ebebeb;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: space-evenly;
+/* Fix for the dot separators */
+.f-info-links span {
+  color: #222;
 }
 
+
+/* index page */
 .listing-cards{
     border: none !important;
     margin-bottom: 2rem;
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
 }
 .card-img-top {
     border-radius: 1rem !important;

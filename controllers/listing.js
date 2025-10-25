@@ -2,8 +2,8 @@ const Listing = require("../models/listing");
 const NodeGeocoder = require('node-geocoder');
 
 const options = {
-  provider: 'opencage', // Use OpenCage
-  apiKey: process.env.OPENCAGE_API_KEY, // Pass in your new API key 
+  provider: 'opencage',
+  apiKey: process.env.OPENCAGE_API_KEY, 
 };
 
 const geocoder = NodeGeocoder(options);
@@ -31,7 +31,6 @@ module.exports.showListing = (async (req,res) => {
         req.flash("error" ,"Listing does not exist!");
         return res.redirect("/listings");
     }
-    //console.log(listing);
     res.render("listings/show.ejs" , { listing });
 });
 
@@ -39,10 +38,9 @@ module.exports.createListing = (async (req,res) => {
     try {
     let url = req.file.path;
     let filename = req.file.filename;
-    // 1. Geocode the location using node-geocoder
+    //get location using geocoder
     const data = await geocoder.geocode(req.body.listing.location);
-
-    // Check if we got a result
+    
     if (!data.length) {
         req.flash("error", "Could not find that location. Please try a different one.");
         return res.redirect("/listings/new");

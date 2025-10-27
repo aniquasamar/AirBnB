@@ -24,33 +24,33 @@ body {
     color: #222222 !important;
 }
 
-  .search-btn {
-    background-color: #fe424d;
-    border-radius: 25px;
-    color: #fff;
-    padding: 0 1rem 0 1rem;
-  }
-  .search-btn:hover {
-    background-color: #fe424d;
-    color: #fff;
-  }
-  .search-btn i {
-    display: inline;
-    margin-right: 0.5rem;
-  }
-  .search-inp {
-    border-radius: 25px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
-    font-size: 0.9rem;
-  }
+.search-btn {
+  background-color: #fe424d !important;
+  border-radius: 25px !important;
+  color: #fff !important;
+  padding: 0 1rem 0 1rem !important;
+}
+.search-btn:hover {
+  background-color: #fe424d !important;
+  color: #fff !important;
+}
+.search-btn i {
+  display: inline !important;
+  margin-right: 0.5rem !important;
+}
+.search-inp {
+  border-radius: 25px !important;
+  padding: 0.5rem 3rem 0.5rem 3rem !important;
+  font-size: 0.9rem !important;
+}
 
-  @media (max-width: 767.98px) {
-  .navbar-collapse {
-    background-color: white;
-    padding: 1.5rem;        
-    margin-top: 0.5rem;   
-    border-radius: 0.75rem; 
-  }
+@media (max-width: 767.98px) {
+.navbar-collapse {
+  background-color: white;
+  padding: 1.5rem;        
+  margin-top: 0.5rem;   
+  border-radius: 0.75rem; 
+}
 }
 /* Footer */
 
